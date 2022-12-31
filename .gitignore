@@ -1,1 +1,16 @@
+#virtual environment
 env/
+
+#Database
+db.sqlite3
+
+__pycache__
+
+.gitignore
+#Migrations
+blog/Migrations
+
+mynote.txt
+
+#static files
+files/

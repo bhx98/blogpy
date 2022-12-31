@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  postgres:
+    # blogpy_postgresql:
+    container_name: blogpy_postgresql
+    image: postgres #:14.1-alpine
+    # container_name: blogpy_postgresql
+    volumes:
+      - blogpy_postgresql:/var/lib/postgresql/data
+    restart: always
+    # env_files: .env
+    ports: 
+      - '5432:5432'
+    networks:
+      - blogpy_network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+volumes:
+  blogpy_postgresql:
+    external: true
+networks:
+  blogpy_network:
+    external: true
+    # driver: nat
+    
+
