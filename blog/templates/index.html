@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -16,18 +16,29 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="static/css/base.css">
-    <link rel="stylesheet" href="static/css/vendor.css">
-    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="../../static/css/base.css">
+    <link rel="stylesheet" href="../../static/css/vendor.css">
+    <link rel="stylesheet" href="../../static/css/main.css">
+
+    <!-- <link rel="stylesheet" href="{% static '../css/base.css' %}">
+    <link rel="stylesheet" href="{%static '../css/vendor.css' %}">
+    <link rel="stylesheet" href="{%static '../css/main.css' %}"> -->
+    <!-- script ckeditor
+    ================================================== -->
+    <script type="text/javascript" src="ckeditor/ckeditor-init.js"></script>
+    <script type="text/javascript" src="ckeditor/ckeditor/ckeditor.js"></script>
+
+    <!-- <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script> -->
 
     <!-- script
     ================================================== -->
-    <script src="static/js/modernizr.js"></script>
-
+    <script src="../../static/js/modernizr.js"></script>
+ 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../static/favicon.ico" type="image/x-icon">
 
 </head>
 
@@ -96,7 +107,7 @@
 
                                 <div class="entry__info">
                                     <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="static/images/avatars/user-05.jpeg" alt="">
+                                        <img class="avatar" src="{% static 'images/avatars/user-05.jpeg' %}" alt="">
                                     </a>
                                     <ul class="entry__meta">
                                         <li><a href="#0">محمد بابازاده</a></li>
@@ -121,7 +132,7 @@
 
                                 <div class="entry__info">
                                     <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="static/images/avatars/user-03.jpeg" alt="">
+                                        <img class="avatar" src="{% static 'images/avatars/user-03.jpeg' %}" alt="">
                                     </a>
 
                                     <ul class="entry__meta">
@@ -148,7 +159,7 @@
 
                                 <div class="entry__info">
                                     <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="static/images/avatars/user-03.jpeg" alt="">
+                                        <img class="avatar" src="{% static 'images/avatars/user-03.jpeg' %}" alt="">
                                     </a>
 
                                     <ul class="entry__meta">
@@ -175,38 +186,38 @@
 
         <div class="row entries-wrap wide">
             <div class="entries">
-
+                {% for article in article_data %}
                 <article class="col-block">
 
                     <div class="item-entry" data-aos="zoom-in">
                         <div class="item-entry__thumb">
                             <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/lamp-400.jpg"
+                                <img src="{{ article.cover }}"
                                      srcset="static/images/thumbs/post/lamp-400.jpg 1x, static/images/thumbs/post/lamp-800.jpg 2x" alt="">
                             </a>
                         </div>
 
                         <div class="item-entry__text">
                             <div class="item-entry__cat">
-                                <a href="category.html">طراحی</a>
+                                <a href="category.html">{{ article.category.}}</a>
                             </div>
 
-                            <h1 class="item-entry__title"><a href="single-standard.html">مزایای مینیمالیسم در طراحی داخلی</a></h1>
+                            <h1 class="item-entry__title"><a href="single-standard.html">{{ article.title }}</a></h1>
 
                             <div class="item-entry__date">
-                                <a href="single-standard.html">June 15, 2018</a>
+                                <a href="single-standard.html">{{ article.created_at }}</a>
                             </div>
                         </div>
                     </div> <!-- item-entry -->
 
                 </article> <!-- end article -->
-
+                {% endfor %}
                 <article class="col-block">
 
                     <div class="item-entry" data-aos="zoom-in">
                         <div class="item-entry__thumb">
                             <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/tulips-400.jpg"
+                                <img src="{% static 'images/thumbs/post/tulips-400.jpg' %}"
                                      srcset="static/images/thumbs/post/tulips-400.jpg 1x, static/images/thumbs/post/tulips-800.jpg 2x" alt="">
                             </a>
                         </div>
@@ -219,7 +230,7 @@
                             <h1 class="item-entry__title"><a href="single-standard.html">چند واقعیت جالب درباره کافئین</a></h1>
 
                             <div class="item-entry__date">
-                                <a href="single-standard.html">June 14, 2018</a>
+                                <a href="single-standard.html">{{ article.created_at }}</a>
                             </div>
                         </div>
                     </div> <!-- item-entry -->
@@ -231,7 +242,7 @@
                     <div class="item-entry" data-aos="zoom-in">
                         <div class="item-entry__thumb">
                             <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/music-400.jpg"
+                                <img src="{% static 'images/thumbs/post/music-400.jpg' %}"
                                      srcset="static/images/thumbs/post/music-400.jpg 1x, static/images/thumbs/post/music-800.jpg 2x" alt="">
                             </a>
                         </div>
@@ -256,209 +267,7 @@
                     <div class="item-entry" data-aos="zoom-in">
                         <div class="item-entry__thumb">
                             <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/watch-400.jpg"
-                                     srcset="static/images/thumbs/post/watch-400.jpg 1x, static/images/thumbs/post/watch-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">مدیریت</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">تکنیک پومودورو واقعاً کار می کند</a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 12, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/wheel-400.jpg"
-                                     srcset="static/images/thumbs/post/wheel-400.jpg 1x, static/images/thumbs/post/wheel-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">سبک زندگی</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">بازدید از پارکهای تفریحی سلامت شما را بهبود می بخشد</a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 12, 2017</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/guitarist-400.jpg"
-                                     srcset="static/images/thumbs/post/guitarist-400.jpg 1x, static/images/thumbs/post/guitarist-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">موزیک</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">آنچه ترجیح موسیقی تان درباره شما و شخصیت شما می گوید</a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 02, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/jump-400.jpg"
-                                     srcset="static/images/thumbs/post/jump-400.jpg 1x, static/images/thumbs/post/jump-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">روابط</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">لحظات خانوادگی پربار ایجاد کنید</a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 02, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/flowers-400.jpg"
-                                     srcset="static/images/thumbs/post/flowers-400.jpg 1x, static/images/thumbs/post/flowers-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">سبک زندگی</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">باغبانی: راز خوشبختی
-                            </a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">June 01, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/woodcraft-400.jpg"
-                                     srcset="static/images/thumbs/post/woodcraft-400.jpg 1x, static/images/thumbs/post/woodcraft-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">خلاقیت</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">بررسی طرح های مینیمالیست
-                            </a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">May 30, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/fuji-400.jpg"
-                                     srcset="static/images/thumbs/post/fuji-400.jpg 1x, static/images/thumbs/post/fuji-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">خلاقیت</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">چه مهارت هایی برای یک عکاس لازم است؟</a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">May 30, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/beetle-400.jpg"
-                                     srcset="static/images/thumbs/post/beetle-400.jpg 1x, static/images/thumbs/post/beetle-800.jpg 2x" alt="">
-                            </a>
-                        </div>
-
-                        <div class="item-entry__text">
-                            <div class="item-entry__cat">
-                                <a href="category.html">سبک زندگی</a>
-                            </div>
-
-                            <h1 class="item-entry__title"><a href="single-standard.html">بازگشت به روزهای خوب گذشته</a></h1>
-
-                            <div class="item-entry__date">
-                                <a href="single-standard.html">May 28, 2018</a>
-                            </div>
-                        </div>
-                    </div> <!-- item-entry -->
-
-                </article> <!-- end article -->
-
-                <article class="col-block">
-
-                    <div class="item-entry" data-aos="zoom-in">
-                        <div class="item-entry__thumb">
-                            <a href="single-standard.html" class="item-entry__thumb-link">
-                                <img src="static/images/thumbs/post/sydney-400.jpg"
+                                <img src="{% static 'images/thumbs/post/sydney-400.jpg' %}"
                                      srcset="static/images/thumbs/post/sydney-400.jpg 1x, static/images/thumbs/post/sydney-800.jpg 2x" alt="">
                             </a>
                         </div>
@@ -585,9 +394,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- Java Script
     ================================================== -->
-    <script src="static/js/jquery-3.2.1.min.js"></script>
-    <script src="static/js/plugins.js"></script>
-    <script src="static/js/main.js"></script>
+    <script src="../../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../../static/js/plugins.js"></script>
+    <script src="../../static/js/main.js"></script>
 
 </body>
 

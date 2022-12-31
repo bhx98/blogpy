@@ -9,13 +9,13 @@ class IndexPage(TemplateView):
 
     def get(self, request, **kwargs):
         article_data = []
-        all_article = Article.objects.all()[:9]
+        all_article = Article.objects.all().order_by('-created_at')[:9]
         for article in all_article:
             article_data.append({
                 'title': article.title,
-                'cover': article.content.url,
+                # 'cover': article.content.url,
                 'category': article.category.title,
-                'created_at': article.created_at,
+                'created_at': article.created_at.date(),
             })
         context = {
             'article_data': article_data
