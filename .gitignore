@@ -11,6 +11,8 @@ __pycache__
 blog/Migrations
 
 mynote.txt
+incomplete.txt
+mynote_command.txt
 
 #static files
 files/

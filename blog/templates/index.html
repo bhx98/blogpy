@@ -20,16 +20,10 @@
     <link rel="stylesheet" href="../../static/css/vendor.css">
     <link rel="stylesheet" href="../../static/css/main.css">
 
-    <!-- <link rel="stylesheet" href="{% static '../css/base.css' %}">
-    <link rel="stylesheet" href="{%static '../css/vendor.css' %}">
-    <link rel="stylesheet" href="{%static '../css/main.css' %}"> -->
     <!-- script ckeditor
     ================================================== -->
     <script type="text/javascript" src="ckeditor/ckeditor-init.js"></script>
     <script type="text/javascript" src="ckeditor/ckeditor/ckeditor.js"></script>
-
-    <!-- <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
-    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script> -->
 
     <!-- script
     ================================================== -->
@@ -71,8 +65,10 @@
             <h2 class="header__nav-heading h6">هدایت به</h2>
 
             <ul class="header__nav">
-                <li><a href="page-contact.html" title="">تماس</a></li>
-                <li><a href="page-about.html" title="">درباره</a></li>
+                <li><a href="{% url 'contact' %}" title=""> تماس با ما</a></li>
+
+                <!-- <li><a href="contact.html" title="">تماس</a></li> -->
+                <li><a href="{% url 'about' %}" title=""> درباره ما</a></li>
                 <li>
                     <a href="category.html" title="">دسته بندی</a>
                 </li>
@@ -98,7 +94,7 @@
                     <div class="featured__slide">
                         <div class="entry">
 
-                            <div class="entry__background" style="background-image:url('static/images/thumbs/featured/featured-guitarman.jpg');"></div>
+                            <div class="entry__background" style="background-image:url('../../static/images/thumbs/featured/featured-guitarman.jpg');"></div>
 
                             <div class="entry__content">
                                 <span class="entry__category"><a href="#0">موزیک</a></span>
@@ -123,7 +119,7 @@
 
                         <div class="entry">
 
-                            <div class="entry__background" style="background-image:url('static/images/thumbs/featured/featured-watch.jpg');"></div>
+                            <div class="entry__background" style="background-image:url('../../static/images/thumbs/featured/featured-watch.jpg');"></div>
 
                             <div class="entry__content">
                                 <span class="entry__category"><a href="#0">مدیریت</a></span>
@@ -150,7 +146,7 @@
 
                         <div class="entry">
 
-                            <div class="entry__background" style="background-image:url('static/images/thumbs/featured/featured-beetle.jpg');"></div>
+                            <div class="entry__background" style="background-image:url('../../static/images/thumbs/featured/featured-beetle.jpg');"></div>
 
                             <div class="entry__content">
                                 <span class="entry__category"><a href="#0">سبک زندگی</a></span>
@@ -199,7 +195,7 @@
 
                         <div class="item-entry__text">
                             <div class="item-entry__cat">
-                                <a href="category.html">{{ article.category.}}</a>
+                                <a href="category.html">{{ article.category }}</a>
                             </div>
 
                             <h1 class="item-entry__title"><a href="single-standard.html">{{ article.title }}</a></h1>

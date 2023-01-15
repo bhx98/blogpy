@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-h@&*=r#1wlr9u%g@jj)ojju#rm!sp7pdevcml_lh-*j=4v!t9)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
+    'tinymce',
     'blog',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -142,25 +144,58 @@ STATIC_URL = '/static/'
 
 # CKEditor
 
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
+# CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 # CKEditor Configuration Settings
 
 CKEDITOR_CONFIGS = {
     'default': {
-        # 'toolbar': 'Custom',
-        'width': '461px',
-        'height': 'auto',
-        # 'toolbar_Custom': [
-        #     ['Bold', 'Italic', 'Underline'],
-        #     ['NumberedList', 'BulletedList'],
-        # ],
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
     }
 }
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 # Media Settings
-MEDIA_URL = 'files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '')
+MEDIA_URL = '/media/'
+
+# MEDIA_URL = 'files/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, '')
+
+# TINYMCE_JS_URL = os.path.join(STATIC_URL, "path/to/tiny_mce/tiny_mce.js")
+# TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "path/to/tiny_mce")
+TINYMCE_DEFAULT_CONFIG = {
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'silver',
+    'plugins': '''
+            textcolor save link image media preview codesample contextmenu
+            table code lists fullscreen  insertdatetime  nonbreaking
+            contextmenu directionality searchreplace wordcount visualblocks
+            visualchars code fullscreen autolink lists  charmap print  hr
+            anchor pagebreak
+            ''',
+    'toolbar1': '''
+            fullscreen preview bold italic underline | fontselect,
+            fontsizeselect  | forecolor backcolor | alignleft alignright |
+            aligncenter alignjustify | indent outdent | bullist numlist table |
+            | link image media | codesample |
+            ''',
+    'toolbar2': '''
+            visualblocks visualchars |
+            charmap hr pagebreak nonbreaking anchor |  code |
+            ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+}

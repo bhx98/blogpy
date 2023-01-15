@@ -1,0 +1,12 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/my_static/ckeditor/ckeditor/';</script>
+<script src="cdn.ckeditor.com/4.15.0/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'editor1' );
+    CKEDITOR.config.allowedContent = true;
+    CKEDITOR.config.removeFormatAttributes = '';
+   </script>
+{{ block.super }}
+{% endblock %}
