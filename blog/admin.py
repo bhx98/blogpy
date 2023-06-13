@@ -8,11 +8,13 @@ from .models import *
 # admin.site.register(Article)
 # admin.site.register(Category)
 
+
 class textEditorAdmin(admin.ModelAdmin):
-   list_display = ["title"]
-   formfield_overrides = {
-   models.TextField: {'widget': TinyMCE()}
-   }
+    list_display = ["title"]
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE()}
+    }
+
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'avatar', 'description']
@@ -21,7 +23,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 class ArticleAdmin(admin.ModelAdmin):
     content = forms.CharField(widget=CKEditorWidget())
     search_fields = ['title', 'content']
-    list_display = ['title', 'category', 'created_at']
+    list_display = ['title', 'category', 'created_at', 'author']
 
 
 class CategoryAdmin(admin.ModelAdmin):

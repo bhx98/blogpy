@@ -70,10 +70,10 @@
                 <!-- <li><a href="contact.html" title="">تماس</a></li> -->
                 <li><a href="{% url 'about' %}" title=""> درباره ما</a></li>
                 <li>
-                    <a href="category.html" title="">دسته بندی</a>
+                    <a href="{% url 'category' %}" title="">دسته بندی</a>
                 </li>
 
-                              <li class="current"><a href="index.html" title="">خانه</a></li>
+                              <li class="current"><a href="{% url 'index' %}" title="">خانه</a></li>
             </ul> <!-- end header__nav -->
 
             <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">بستن</a>
@@ -103,10 +103,10 @@
 
                                 <div class="entry__info">
                                     <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="{% static 'images/avatars/user-05.jpeg' %}" alt="">
+                                        <img class="avatar" src="{% static 'images/avatars/images1.jpg' %}" alt="">
                                     </a>
                                     <ul class="entry__meta">
-                                        <li><a href="#0">محمد بابازاده</a></li>
+                                        <li><a href="#0">Admin</a></li>
                                         <li>June 02, 2018</li>
                                     </ul>
                                 </div>
@@ -128,11 +128,11 @@
 
                                 <div class="entry__info">
                                     <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="{% static 'images/avatars/user-03.jpeg' %}" alt="">
+                                        <img class="avatar" src="{% static 'images/avatars/user-00.png' %}" alt="">
                                     </a>
 
                                     <ul class="entry__meta">
-                                        <li><a href="#0">محمد بابازاده</a></li>
+                                        <li><a href="#0">Admin</a></li>
                                         <li>June 13, 2018</li>
                                     </ul>
                                 </div>
@@ -155,11 +155,11 @@
 
                                 <div class="entry__info">
                                     <a href="#0" class="entry__profile-pic">
-                                        <img class="avatar" src="{% static 'images/avatars/user-03.jpeg' %}" alt="">
+                                        <img class="avatar" src="{% static 'images/avatars/images3.jpeg' %}" alt="">
                                     </a>
 
                                     <ul class="entry__meta">
-                                        <li><a href="#0">محمد بابازاده</a></li>
+                                        <li><a href="#0">Admin</a></li>
                                         <li>June 12, 2018</li>
                                     </ul>
                                 </div>
@@ -195,10 +195,11 @@
 
                         <div class="item-entry__text">
                             <div class="item-entry__cat">
-                                <a href="category.html">{{ article.category }}</a>
+                                <a href="{% url 'category' %}">{{ article.category }}</a>
                             </div>
 
                             <h1 class="item-entry__title"><a href="single-standard.html">{{ article.title }}</a></h1>
+                            <h1 class="item-entry__title"><a href="single-standard.html">{{ article.author }}</a></h1>
 
                             <div class="item-entry__date">
                                 <a href="single-standard.html">{{ article.created_at }}</a>

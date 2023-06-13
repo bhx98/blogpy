@@ -44,6 +44,10 @@ class ContactPage(TemplateView):
     template_name = 'contact.html'
 
 
+class CategoryPage(TemplateView):
+    template_name = 'category.html'
+
+
 class AboutPage(TemplateView):
     template_name = 'about.html'
 

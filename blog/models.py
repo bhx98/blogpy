@@ -11,7 +11,7 @@ from tinymce.models import HTMLField
 class Post(models.Model):
 
     title = models.CharField(max_length=255)
-    #body = models.TextField()
+    # body = models.TextField()
     body = RichTextUploadingField()  # CKEditor Rich Text Field
 
     def __str__(self):
@@ -19,28 +19,27 @@ class Post(models.Model):
 
 
 def validate_file_extension(value):
-    pass
-    # import os
-    # from django.core.exceptions import ValidationError
-    # if value:
-    #     ext = os.path.splitext(value.name)[1]
-    #     valid_extension = ['.jpg', '.png', 'jpeg', ]
-    #     if not ext.lower() in valid_extension:
-    #         raise ValidationError('Unsupported file extension')
+    import os
+    from django.core.exceptions import ValidationError
+    if value:
+        ext = os.path.splitext(value.name)[1]
+        valid_extension = ['.jpg', '.png', 'jpeg', ]
+        if not ext.lower() in valid_extension:
+            raise ValidationError('Unsupported file extension')
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.FileField(
-        upload_to='files/user_avatar/', null=True, blank=True)
+        upload_to='files/user_avatar/', null=True, blank=True, validators=[validate_file_extension])
     description = models.CharField(
-        max_length=512, null=False, blank=True, validators=[validate_file_extension])
+        max_length=512, null=False, blank=True)
 
     def __str__(self):
-        return self.user.username
+        return self.user.first_name+" "+self.user.last_name
+        # return self.user.username
 
         # return self.user.get_full_name()
-        # return self.user.first_name+" "+self.user.last_name
 
 
 class Article(models.Model):
@@ -53,8 +52,8 @@ class Article(models.Model):
         default=datetime.now(), blank=False, null=True)
     category = models.ForeignKey(
         'Category', models.CASCADE, null=True, blank=True)
-    author = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.OneToOneField(
+        UserProfile, on_delete=models.DO_NOTHING, null=True, blank=True)
     promote = models.BooleanField(default=False)
 
     def __str__(self):

@@ -8,14 +8,14 @@ services:
     volumes:
       - blogpy_postgresql:/var/lib/postgresql/data
     restart: always
-    # env_files: .env
+    env_file: env/.env
     ports: 
-      - '5432:5432'
+      - "5432:5432"
     networks:
       - blogpy_network
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    # environment:
+    #   - POSTGRES_USER=postgres
+    #   - POSTGRES_PASSWORD=postgres
 volumes:
   blogpy_postgresql:
     external: true
