@@ -1,4 +1,6 @@
 <!-- {% load static %} -->
+{% load jalali_tags %}
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -200,10 +202,14 @@
 
                             <h1 class="item-entry__title"><a href="single-standard.html">{{ article.title }}</a></h1>
                             <h1 class="item-entry__title"><a href="single-standard.html">{{ article.author }}</a></h1>
-
+                            <!-- <div class="item-entry__date">
+                                <a href="single-standard.html">{{ article.created_at }}</a>                                
+                            </div> -->
                             <div class="item-entry__date">
-                                <a href="single-standard.html">{{ article.created_at }}</a>
+                                <a href="single-standard.html">{{ article.created_at|to_jalali:'%Y/%m/%d' }}</a>
+                                
                             </div>
+                        
                         </div>
                     </div> <!-- item-entry -->
 
