@@ -2,6 +2,9 @@ from django.contrib import admin
 from django import forms
 from ckeditor.widgets import CKEditorWidget
 from .models import *
+from jalali_date import datetime2jalali, date2jalali
+from jalali_date.admin import ModelAdminJalaliMixin, StackedInlineJalaliMixin, TabularInlineJalaliMixin
+
 # Register your models here.
 
 # admin.site.register(UserProfile)
@@ -18,16 +21,22 @@ class textEditorAdmin(admin.ModelAdmin):
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'avatar', 'description']
+    readonly_fields = ['img_preview']
 
 
-class ArticleAdmin(admin.ModelAdmin):
+class ArticleAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     content = forms.CharField(widget=CKEditorWidget())
     search_fields = ['title', 'content']
-    list_display = ['title', 'category', 'created_at', 'author']
+    list_display = ['title', 'category', 'Created_at', 'author']
+    readonly_fields = ['img_preview']
+
+    def Created_at(self, obj):
+        return datetime2jalali(obj.created_at).strftime('%Y/%m/%d %H:%M:%S')
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title', 'cover']
+    readonly_fields = ['img_preview']
 
 
 admin.site.register(UserProfile, UserProfileAdmin)

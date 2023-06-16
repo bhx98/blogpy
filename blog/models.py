@@ -6,6 +6,7 @@ from datetime import datetime
 from ckeditor_uploader.fields import RichTextUploadingField
 from tinymce.widgets import TinyMCE
 from tinymce.models import HTMLField
+from django.utils.html import mark_safe
 
 
 class Post(models.Model):
@@ -30,10 +31,13 @@ def validate_file_extension(value):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.FileField(
+    avatar = models.ImageField(
         upload_to='files/user_avatar/', null=True, blank=True, validators=[validate_file_extension])
     description = models.CharField(
         max_length=512, null=False, blank=True)
+
+    def img_preview(self):
+        return mark_safe(f'<img src="{self.avatar.url}" width="300"/>')
 
     def __str__(self):
         return self.user.first_name+" "+self.user.last_name
@@ -56,6 +60,9 @@ class Article(models.Model):
         UserProfile, on_delete=models.DO_NOTHING, null=True, blank=True)
     promote = models.BooleanField(default=False)
 
+    def img_preview(self):
+        return mark_safe(f'<img src="{self.cover.url}" width="300"/>')
+
     def __str__(self):
         return self.title
 
@@ -65,6 +72,9 @@ class Category(models.Model):
     cover = models.FileField(
         upload_to='files/category_cover/', null=False, blank=False, validators=[validate_file_extension])
     # magic method/dunder
+
+    def img_preview(self):
+        return mark_safe(f'<img src="{self.cover.url}" width="300"/>')
 
     def __str__(self):
         return self.title
