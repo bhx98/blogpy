@@ -17,4 +17,7 @@ mynote_command.txt
 #static files
 files/
 
+template_raw
+
 wordsmith template html5
+db.sqlite3
