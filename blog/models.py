@@ -48,7 +48,7 @@ class UserProfile(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=128, null=False, blank=False)
-    cover = models.FileField(
+    cover = models.ImageField(
         upload_to='files/article_cover/', validators=[validate_file_extension], null=True, blank=True, default='default.jpg')
 
     content = RichTextField(null=True, blank=True)
@@ -56,7 +56,7 @@ class Article(models.Model):
         default=datetime.now(), blank=False, null=True)
     category = models.ForeignKey(
         'Category', models.CASCADE, null=True, blank=True)
-    author = models.OneToOneField(
+    author = models.ForeignKey(
         UserProfile, on_delete=models.DO_NOTHING, null=True, blank=True)
     promote = models.BooleanField(default=False)
 
@@ -69,7 +69,7 @@ class Article(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=128, null=False, blank=False)
-    cover = models.FileField(
+    cover = models.ImageField(
         upload_to='files/category_cover/', null=False, blank=False, validators=[validate_file_extension])
     # magic method/dunder
 
@@ -78,3 +78,19 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('created',)
+
+    def __str__(self):
+        return 'Comment by {} on {}'.format(self.name, self.post)
