@@ -5,6 +5,7 @@ from .models import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from .forms import CommentForm
 from . import serializers
 from jalali_date import datetime2jalali, date2jalali
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -15,11 +16,12 @@ class IndexPage(TemplateView):
 
     def get(self, request, **kwargs):
         article_data = []
-        all_article = Article.objects.all().order_by('-created_at')[:9]
+        all_article = Article.objects.all().order_by('-created_at')[:3]
         for article in all_article:
             article_data.append({
                 'title': article.title,
-                # 'cover': article.content.url,
+                'cover': article.cover.url,
+                'author': article.author.user.username,
                 'category': article.category.title,
                 'created_at': article.created_at.date(),
             })
@@ -66,7 +68,7 @@ class AllArticleAPIView(APIView):
                     'content': article.content,
                     'created_at': article.created_at,
                     'category': article.category.title,
-                    'author': article.author.user.first_name+' '+article.author.user.last_name,
+                    'author': article.author.user.username,
                     'promote': article.promote,
                 })
             return Response({'data': data}, status=status.HTTP_200_OK)
@@ -181,3 +183,8 @@ class AddArticleAPIView(APIView):
             return Response({'status': 'OK'}, status=status.HTTP_200_OK)
         except:
             pass
+
+
+class AllActiveCommentPost(APIView):
+    def get(self, request):
+        posts = Post.objects
