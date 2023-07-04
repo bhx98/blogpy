@@ -76,8 +76,9 @@ class Category(models.Model):
         upload_to='files/category_cover/', null=False, blank=False, verbose_name="تصویر")
     # magic method/dunder
 
-    def img_preview(self):
-        return mark_safe(f'<img src="{self.cover.url}" width="300"/>')
+    def category_image(self):
+        return mark_safe(f'<img src="{self.cover.url}" width="300"/>'
+                         )
 
     def __str__(self):
         return self.title
