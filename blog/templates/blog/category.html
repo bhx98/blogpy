@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% load jalali_tags %}
+{% block title %}دسته بندی{% endblock %}
+{% block content %}
+<section class="s-content s-content--top-padding s-content--narrow">
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+            <!-- {% if category_data %} -->
+                <table id="category">
+                    {% for c in category_data  %}
+                    <tr>
+                        <td>{{ c.id }}  </td>
+                        <td>{{ c.title }}</td>
+                        <td><img src="{{ category_data.category_image }}" > </td> 
+                        <td><img src="{{ category_data.cover }}" > </td> 
+
+                        <!-- <td><img src="{{ category_data.category_image }}" 
+                            srcset="{{ category_data.category_image }}" style="width:200px;height:200px;"> -->
+                        </td>
+                    </tr>                    
+                </table>                
+            {% endfor %}
+            <!-- {% endif %} -->
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
