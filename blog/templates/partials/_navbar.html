@@ -1,0 +1,24 @@
+<nav class="header__nav-wrap">
+
+    <h2 class="header__nav-heading h6">هدایت به</h2>
+
+    <ul class="header__nav">
+        <li><a href="{% url 'ArticleList' %}" title=""> tesst</a></li>
+
+        <li><a href="{% url 'login' %}" title=""> Login From user's app</a></li>
+
+        <li><a href="{% url 'contact' %}" title=""> تماس با ما</a></li>
+
+        <!-- <li><a href="contact.html" title="">تماس</a></li> -->
+        <li><a href="{% url 'about' %}" title=""> درباره ما</a></li>
+        <li>
+            <a href="{% url 'category' %}" title="">دسته بندی</a>
+        </li>
+
+
+        <li class="current"><a href="{% url 'index' %}" title="">خانه</a></li>
+    </ul> <!-- end header__nav -->
+
+    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">بستن</a>
+
+</nav> <!-- end header__nav-wrap -->
