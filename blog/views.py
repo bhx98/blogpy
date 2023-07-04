@@ -249,3 +249,16 @@ class ContactUs(APIView):
             form = ContactForm()
             return render(request, "contact.html", {'form': form})
 
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            new_user.authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password'])
+            login(request, new_user)
+            return redirect('index')
+    else:
+        form = UserCreateForm()
+        return render(request, 'registeration/signup.html', {'form': form})
