@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'jalali_date',
     'bootstrapform',
     'users',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
