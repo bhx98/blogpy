@@ -215,6 +215,7 @@ class DeleteArticleAPIView(APIView):
 
 
 class AddArticleAPIView(APIView):
+    @login_required
     def get(self, request, format=None):
         try:
             serializer = serializers.DeleteArticleSerializer(data=request.data)
