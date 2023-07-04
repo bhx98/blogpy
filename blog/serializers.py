@@ -32,3 +32,11 @@ class UpdateArticleCoverSerializer(serializers.Serializer):
 
 class DeleteArticleSerializer(serializers.Serializer):
     article_id = serializers.IntegerField(required=True, allow_null=False)
+
+class AddContactUsMessageSerializer(serializers.Serializer):
+    subject=serializers.CharField()
+    name=serializers.CharField()
+    email=serializers.EmailField()
+    phone=serializers.CharField()
+    message=serializers.CharField()
+    
