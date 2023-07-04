@@ -1,5 +1,9 @@
 from django import forms
-from .models import Comment
+from django.core.validators import EmailValidator
+from ckeditor.fields import RichTextField
+from django.forms import TextInput, EmailInput
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class CommentForm(forms.ModelForm):
     class Meta:
