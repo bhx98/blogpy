@@ -32,7 +32,7 @@ def validate_file_extension(value):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,verbose_name="نام کاربری")
     avatar = models.ImageField(
-        upload_to='files/user_avatar/', null=True, blank=True, validators=[validate_file_extension])
+        upload_to='files/user_avatar/', null=True, blank=True,verbose_name="تصویر پروفایل")
     description = models.CharField(
         max_length=512, null=False, blank=True)
 
