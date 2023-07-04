@@ -94,3 +94,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment by {} on {}'.format(self.name, self.post)
+
+
+class ContactUsMessage:
+    subject = models.CharField(max_length=150)
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+    message = RichTextField(null=True, blank=True)
+    insert_date = models.DateTimeField(auto_created=True)
+
+    def __str__(self):
+        return self.subject
