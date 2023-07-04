@@ -196,12 +196,22 @@ class UpdateArticleAPIView(APIView):
 
 
 class DeleteArticleAPIView(APIView):
+
+    @login_required
     def post(self, request, format=None):
 
         try:
-            pass
+            serializer = serializers.DeleteArticleSerializer(data=request.data)
+            if serializer.is_valid():
+                article_id = serializer.data.get('article_id')
+            else:
+                return Response({'status': 'Bad Request!'}, status=status.HTTP_400_BAD_REQUEST)
+            Article.objects.filter(id=article_id).delete()
+
+            return Response({'status': 'OK'}, status=status.HTTP_200_OK)
         except:
-            pass
+            return Response({'status': 'Internal Server Error'},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class AddArticleAPIView(APIView):
