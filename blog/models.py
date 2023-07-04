@@ -40,7 +40,7 @@ class UserProfile(models.Model):
         return mark_safe(f'<img src="{self.avatar.url}" width="300"/>')
 
     def __str__(self):
-        return self.user.first_name+" "+self.user.last_name
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
         # return self.user.username
 
         # return self.user.get_full_name()
