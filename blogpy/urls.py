@@ -31,6 +31,8 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('tinymce/', include('tinymce.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
