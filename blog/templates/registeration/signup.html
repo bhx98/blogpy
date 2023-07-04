@@ -1,0 +1,31 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}ثبت نام{% endblock %}
+
+{% block content %}
+<div class="container">
+  <section class="s-content s-content--top-padding s-content--narrow">
+    <div class="row narrow">
+        <div class="col-full s-content__header">
+  <h2>ثبت نام</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+      {{ field.errors }}
+      <label>{{field.label_tag}}</label>
+      <p>{{field}}</p>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Sign up</button>
+    <button type="reset" class="btn btn-primary">Reset</button>
+    <a href="{% url 'login' %}">Already a member</a>
+  </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{% endblock %}
