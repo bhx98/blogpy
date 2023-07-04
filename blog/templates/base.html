@@ -66,9 +66,20 @@
     <header class="s-header header">
 
         <div class="header__logo">
-            <a class="logo" href="index.html">
-                BLOGPY
+            <a class="logo" href="{% url 'index' %}">
+                {% if user.is_authenticated %}
+                <a href="" title="">welcome {{user.username}}</a>
+
+                <a href="{% url 'logout' %}" title="">خروج</a>   
+                {% django_browser_reload_script %}
+                {% else %}
+                <a href="{% url 'login_blog' %}" title="">ورود</a>
+                <a href="{% url 'signup' %}" title="">ثبت نام</a>
+
+                {% endif %}
+             
             </a>
+        </div>        
 
         </div> <!-- end header__logo -->
         <a class="header__toggle-menu" href="#0" title="Menu"><span>منو</span></a>
