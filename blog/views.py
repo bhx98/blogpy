@@ -91,6 +91,7 @@ class AllArticleAPIView(APIView):
             data = []
             for article in all_article:
                 data.append({
+                    'id': article.id,
                     'title': article.title,
                     'cover': article.cover.url if article.cover else None,
                     'content': article.content,
