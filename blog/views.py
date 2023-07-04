@@ -16,7 +16,9 @@ class IndexPage(TemplateView):
 
     def get(self, request, **kwargs):
         article_data = []
-        all_article = Article.objects.all().order_by('-created_at')[:3]
+        paginator = Paginator(all_article, 3)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         for article in all_article:
             article_data.append({
                 'title': article.title,
