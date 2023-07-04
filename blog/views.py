@@ -190,3 +190,21 @@ class AddArticleAPIView(APIView):
 class AllActiveCommentPost(APIView):
     def get(self, request):
         posts = Post.objects
+
+class ContactUs(APIView):
+    # template_name = 'contact.html'
+
+    def post(self, request, format=None):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = ContactUsMessage.subject
+            name: ContactUsMessage.name
+            email: ContactUsMessage.email
+            phone: ContactUsMessage.phone
+            message: ContactUsMessage.message
+            return Response({'status': 'OK'}, status=status.HTTP_200_OK)
+        else:
+            # if a GET (or any other method) we'll create a blank form
+            form = ContactForm()
+            return render(request, "contact.html", {'form': form})
+
