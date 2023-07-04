@@ -34,7 +34,7 @@ class UserProfile(models.Model):
     avatar = models.ImageField(
         upload_to='files/user_avatar/', null=True, blank=True,verbose_name="تصویر پروفایل")
     description = models.CharField(
-        max_length=512, null=False, blank=True)
+        max_length=512, null=False, blank=True,verbose_name="توضیحات")
 
     def img_preview(self):
         return mark_safe(f'<img src="{self.avatar.url}" width="300"/>')
