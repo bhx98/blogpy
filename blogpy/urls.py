@@ -17,7 +17,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from blog.views import handler_404
 
+handler_404 = handler_404
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
