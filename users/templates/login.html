@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+
+{% block content %}
+<section class="s-content s-content--top-padding s-content--narrow">
+
+	<div class="row narrow">    
+		<div class="col-full s-content__header">
+			<form method="POST" action="sign_in" novalidate>
+				{% csrf_token %}
+				{% bootstrap_form form %}
+
+				<h2>Login</h2>
+				{{form.as_p}}
+				<input type="submit" value="Login" />
+				{% bootstrap_button button_type="submit" content="OK" %}
+
+			</form>
+			</div>
+			</div>
+</section>
+
+{% endblock content%}
