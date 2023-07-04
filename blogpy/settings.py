@@ -147,10 +147,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CKEditor Setting
 # static file
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.dirname(os.path.abspath(__file__))
+# STATIC_ROOT = os.path.dirname(os.path.abspath(__file__))
 # CKEditor
 
 # CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
@@ -173,10 +173,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 # Media Settings
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
 # MEDIA_URL = 'files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, '')
 

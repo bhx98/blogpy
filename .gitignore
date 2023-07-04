@@ -10,10 +10,6 @@ __pycache__
 #Migrations
 blog/Migrations
 
-mynote.txt
-incomplete.txt
-mynote_command.txt
-
 #static files
 files/
 
@@ -21,3 +17,7 @@ template_raw
 
 wordsmith template html5
 db.sqlite3
+blogpy/__pycache__/settings.cpython-39.pyc
+blogpy/__pycache__/urls.cpython-39.pyc
+.gitignore
+.vscode
