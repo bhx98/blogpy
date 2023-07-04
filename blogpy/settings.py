@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'bootstrapform',
     'users',
     'crispy_forms',
+    'bootstrap5',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
