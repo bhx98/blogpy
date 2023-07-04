@@ -54,8 +54,10 @@ class ContactPage(TemplateView):
     template_name = 'contact.html'
 
 
-class CategoryPage(TemplateView):
-    template_name = 'category.html'
+class CategoryPage(ListView):
+    model = Category
+    template_name = 'blog/category.html'
+    context_object_name = 'category_data'
 
 
 class AboutPage(TemplateView):
