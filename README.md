@@ -1,6 +1,7 @@
 Blogpy is a blog application written by Python3 & Django4. 
 
-Technologies used
+Technologies used:
+
 Python 3.x - Programming Language
 Django 4.x - Web Framework
 Django Rest Framework - Web API's
