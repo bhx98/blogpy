@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 
 class SingleArticleSerializer(serializers.Serializer):
+    id=serializers.IntegerField()
     title = serializers.CharField(
         required=True, allow_null=False, allow_blank=False, max_length=128)
     cover = serializers.ImageField()
