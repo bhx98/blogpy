@@ -20,14 +20,14 @@ class textEditorAdmin(admin.ModelAdmin):
 
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'avatar', 'description']
+    list_display = ['user', 'img_preview', 'description']
     readonly_fields = ['img_preview']
 
 
 class ArticleAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     content = forms.CharField(widget=CKEditorWidget())
     search_fields = ['title', 'content']
-    list_display = ['title', 'category', 'Created_at', 'author']
+    list_display = ['title', 'category', 'Created_at', 'author', 'img_preview']
     readonly_fields = ['img_preview']
 
     def Created_at(self, obj):
