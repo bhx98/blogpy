@@ -20,5 +20,8 @@ urlpatterns = [
          views.DeleteArticleAPIView.as_view(), name='delete_article'),
     #     path('article/add',
     #          views.AddArticleAPIView.as_view(), name='add_article'),
-
+    path('login/',
+         views.LoginPage.as_view(), name='login_blog'),
+    path('signup/',
+         views.signup, name='signup'),
 ]
