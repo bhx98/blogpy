@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'blog',
     'rest_framework',
     'jalali_date',
+    'bootstrapform',
+    'users',
 ]
 
 MIDDLEWARE = [
