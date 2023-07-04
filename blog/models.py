@@ -11,7 +11,7 @@ from django.utils.html import mark_safe
 
 class Post(models.Model):
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, verbose_name="عنوان پست")
     # body = models.TextField()
     body = RichTextUploadingField()  # CKEditor Rich Text Field
 
