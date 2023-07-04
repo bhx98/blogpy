@@ -148,6 +148,7 @@ class SearchArticleAPIView(APIView):
 
 
 class SubmitArticleAPIView(APIView):
+    @login_required
     def post(self, request, format=None):
         try:
             serializer = serializers.SubmitArticleSerializer(data=request.data)
