@@ -234,3 +234,5 @@ JALALI_DATE_DEFAULTS = {
         }
     },
 }
+# Crispy form
+CRISPY_TEMPLATE_PACK = 'uni_form'
