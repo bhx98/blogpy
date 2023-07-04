@@ -47,18 +47,20 @@ class UserProfile(models.Model):
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=128, null=False, blank=False)
+    title = models.CharField(max_length=128, null=False,
+                             blank=False, verbose_name="عنوان مقاله")
     cover = models.ImageField(
-        upload_to='files/article_cover/', validators=[validate_file_extension], null=True, blank=True, default='default.jpg')
+        upload_to='files/article_cover/',  null=True, blank=True, default='default.jpg', verbose_name="تصویر مقاله")
 
     content = RichTextField(null=True, blank=True)
     created_at = models.DateTimeField(
-        default=datetime.now(), blank=False, null=True)
+        default=datetime.now(), blank=False, null=True, verbose_name="تاریخ ایجاد")
     category = models.ForeignKey(
-        'Category', models.CASCADE, null=True, blank=True)
+        'Category', models.CASCADE, null=True, blank=True, verbose_name="عنوان دسته بندی")
     author = models.ForeignKey(
-        UserProfile, on_delete=models.DO_NOTHING, null=True, blank=True)
-    promote = models.BooleanField(default=False)
+        UserProfile, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="نویسنده مقاله")
+    promote = models.BooleanField(
+        default=False, verbose_name="مقاله ویژه")
 
     def img_preview(self):
         return mark_safe(f'<img src="{self.cover.url}" width="300"/>')
