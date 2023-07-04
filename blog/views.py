@@ -101,6 +101,9 @@ class AllArticleAPIView(APIView):
                     'promote': article.promote,
                 })
             return Response({'data': data}, status=status.HTTP_200_OK)
+        except article.DoesNotExist:
+
+            return HttpResponseNotFound()
         except:
             return Response({'status': "Internal Server Error, we'll check it later"},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
