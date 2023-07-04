@@ -64,6 +64,26 @@ class AboutPage(TemplateView):
     template_name = 'about.html'
 
 
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            authenticate.user(request, user)
+            messages.success(request, 'you are now logged in')
+            return redirect('index')
+        else:
+            messages.error(request, 'Invalid credentials')
+            return redirect('login')
+    else:
+        return render(request, 'users/login.html')
+
+
+class LoginPage(TemplateView):
+    template_name = 'registeration/login.html'
+
+
 class AllArticleAPIView(APIView):
     def get(self, request, format=None):
         try:
