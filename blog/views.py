@@ -187,7 +187,7 @@ class UpdateArticleAPIView(APIView):
                 article_id = serializer.data.get('article_id')
                 cover = request.FILES['cover']
             else:
-                return Response({'status': 'Bad Request'}, status=status.HTTP_400_OK)
+                return Response({'status': 'Bad Request'}, status=status.HTTP_400_BAD_REQUEST)
             Article.objects.filter(id=article_id).update(cover=cover)
             return Response({'status': 'OK'}, staus=status.HTTP_200_OK)
         except:
