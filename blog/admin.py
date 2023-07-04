@@ -35,8 +35,8 @@ class ArticleAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'cover']
-    readonly_fields = ['img_preview']
+    list_display = ['title', 'category_image']
+    readonly_fields = ['category_image']
 
 
 admin.site.register(UserProfile, UserProfileAdmin)
