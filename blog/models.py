@@ -73,7 +73,7 @@ class Category(models.Model):
     title = models.CharField(max_length=128, null=False,
                              blank=False, verbose_name="عنوان دسته بندی")
     cover = models.ImageField(
-        upload_to='files/category_cover/', null=False, blank=False, validators=[validate_file_extension])
+        upload_to='files/category_cover/', null=False, blank=False, verbose_name="تصویر")
     # magic method/dunder
 
     def img_preview(self):
