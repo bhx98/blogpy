@@ -1,13 +1,36 @@
 {% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% load bootstrap %}
+{{ form|bootstrap }}
+{% load crispy_forms_tags % }
 {% block title %}تماس با ما{% endblock %}
 
 {% block content %}
 
     <section class="s-content s-content--top-padding s-content--narrow">
 
-        <div class="row narrow">
+        <div class="row narrow">    
             <div class="col-full s-content__header">
-                <h1 class="display-1 display-1--with-line-sep">با ما در تماس باشید</h1>
+                <h5 class="display-1 display-1--with-line-sep">با ما در تماس باشید</h5>
+                <form method="post" class="uniForm" dir="rtl" style="text-align: center;margin: 0 auto; 
+                width:300px;">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <table>
+                        {{ form.as_table }}
+                    <div class="form-actions" dir="rtl">
+                        <label for="name" >نام</label>
+                        <input type="text"  id="name" name="name" placeholder="نام را وارد نمایید" dir="rtl">
+                        <label for="subject">موضوع</label>
+                        <input id="your_name" type="text" name="your_name" value="{{ subject }}" maxlength="100" required>                        <label for="email">ایمیل</label>
+                        <label for="phone">شماره تماس</label>
+                        <label for="message"></label>
+                    </table>
+                        <button type="submit">Send</button>
+                      </div>
+                </form>
                 <p class="lead">
                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه مجله در ستون و سطر آنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای</p>
             </div>
@@ -16,10 +39,10 @@
         <div class="row">
             <div class="col-full s-content__main">
                 <p>
-                <img src="../../static/images/thumbs/contact/contact-1000.jpg"
-                     srcset="../../static/images/thumbs/contact/contact-2000.jpg 2000w,
-                             ../../static/images/thumbs/contact/contact-1000.jpg 1000w,
-                             ../../static/images/thumbs/contact/contact-500.jpg 500w"
+                <img src="{% static 'images/thumbs/contact/contact-1000.jpg' %}"
+                     srcset="{% static 'images/thumbs/contact/contact-2000.jpg' %} 2000w,
+                             {% static 'images/thumbs/contact/contact-1000.jpg' %} 1000w,
+                             {% static 'images/thumbs/contact/contact-500.jpg' %} 500w"
                      sizes="(max-width: 2000px) 100vw, 2000px" alt="">
                 </p>
 
