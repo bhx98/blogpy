@@ -10,6 +10,10 @@ from . import serializers
 from jalali_date import datetime2jalali, date2jalali
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+def handler_404(request, exception):
+    template = loader.get_tempalte('article_404.html')
+    return HttpResponse(template.render({'exception': exception}, request), status=404)
+
 
 class IndexPage(TemplateView):
     template_name = "index.html"
