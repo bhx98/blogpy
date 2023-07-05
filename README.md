@@ -15,3 +15,13 @@ sqlite - SQLite Database
 Github - Version Control
 
 Postman - API Testing
+
+Installation:
+
+First clone or download this project.
+
+$ git clone https://github.com/bobycloud/blogpy.git
+
+second install requirments:
+
+pip install -r requirements.txt
