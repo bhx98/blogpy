@@ -12,6 +12,7 @@ blog/Migrations
 
 #static files
 files/
+staticfiles/
 
 template_raw
 
@@ -20,4 +21,9 @@ db.sqlite3
 blogpy/__pycache__/settings.cpython-39.pyc
 blogpy/__pycache__/urls.cpython-39.pyc
 .gitignore
+.vscode
+
+
+staticfiles
+
 .vscode

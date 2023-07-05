@@ -252,3 +252,22 @@ JALALI_DATE_DEFAULTS = {
 }
 # Crispy form
 CRISPY_TEMPLATE_PACK = 'uni_form'
+LOGGING = {}
+
+# Caching
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+# SESSION_ENGINE = 'django.contrib.sesssions.backends.cached_db'
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    #     'DEFAULT_PERMISSION_CLASSES': [
+    #         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    #     ]
+}
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

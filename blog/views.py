@@ -1,14 +1,25 @@
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render, redirect
 
 from django.views.generic import TemplateView
 from .models import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .forms import CommentForm
+from django.template import loader
+from .forms import CommentForm, ContactForm, LoginForm, UserCreateForm
 from . import serializers
+from django.contrib import messages
+from django.contrib.auth import login, authenticate
 from jalali_date import datetime2jalali, date2jalali
+from django.contrib.auth.decorators import login_required
+from django.views.generic.list import ListView
+from django.shortcuts import get_object_or_404
+from django.views.decorators.vary import vary_on_cookie
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import permissions
+
 
 def handler_404(request, exception):
     template = loader.get_tempalte('article_404.html')
@@ -20,14 +31,16 @@ class IndexPage(TemplateView):
 
     def get(self, request, **kwargs):
         article_data = []
+        all_article = Article.objects.all().order_by('-created_at')[:9]
         paginator = Paginator(all_article, 3)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         for article in all_article:
             article_data.append({
+                'id': article.id,
                 'title': article.title,
                 'cover': article.cover.url,
-                'author': article.author.user.username,
+                'author': article.author.user.first_name+' '+article.author.user.last_name,
                 'category': article.category.title,
                 'created_at': article.created_at.date(),
             })
@@ -46,8 +59,16 @@ class IndexPage(TemplateView):
         context = {
             'article_data': article_data,
             'promote_article_data': promote_data,
+            'page_obj': page_obj,
         }
-        return render(request, 'index.html', context)
+        return render(request, 'blog/index.html', context)
+
+
+class ArticleList(ListView):
+    model = Article
+    paginate_by = 3
+    context_object_name = "Article_list"
+    template_name = "article_pagination.html"
 
 
 class ContactPage(TemplateView):
@@ -110,10 +131,12 @@ class AllArticleAPIView(APIView):
 
 
 class SingleArticleAPIView(APIView):
-    def get(self, request, format=None):
+    def get(request, article_id):
         try:
-            article_title = request.GET('article_title')
-            article = Article.objects.filter(title__contains=article_title)
+            # article = get_object_or_404(Article, pk=article_id)
+            # article_id = request.GET(id=pk)
+            # article = get_object_or_404(article, id=article_id)
+            article = Article.objects.filter(pk=article_id)
             serialized_data = serializers.SingleArticleSerializer(
                 article, many=True)
             data = serialized_data.data
@@ -177,13 +200,17 @@ class SubmitArticleAPIView(APIView):
             return Response({'status': "Internal Server Error, we'll check it later"},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+# update article's cover
+
 
 class UpdateArticleAPIView(APIView):
+
+    @login_required
     def post(self, request, format=None):
         try:
             serializer = serializers.UpdateArticleCoverSerializer(
                 data=request.data)
-            if serializers.is_valid():
+            if serializer.is_valid():
                 article_id = serializer.data.get('article_id')
                 cover = request.FILES['cover']
             else:
