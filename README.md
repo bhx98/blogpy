@@ -1,4 +1,4 @@
-Blogpy is a blog application written by Python3 & Django4. 
+Blogpy is a blog application written by Python3 & Django4. Thanks to bobycloud, initial structure of this project belongs to him and I have tried to develop it more
 
 Technologies used:
 
